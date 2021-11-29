@@ -17,7 +17,6 @@
     "chai": "^4.3.4",
     "jest-enzyme": "^7.1.2",
     "msw": "^0.35.0",
-    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
@@ -52,15 +51,15 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^7.0.2",
+    "chai": "*",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint-plugin-sonarjs": "^0.10.0",
     "jest-enzyme": "^7.1.2",
     "json-server": "^0.16.3",
     "json-server-auth": "^2.1.0",
+    "mocha": "*",
     "prettier": "^2.4.1",
-    "react-test-renderer": "^17.0.2",
-    "chai": "*",
-    "mocha": "*"
+    "react-test-renderer": "^17.0.2"
   }
 }
