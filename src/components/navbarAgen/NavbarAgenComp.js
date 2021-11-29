@@ -3,7 +3,6 @@ import { IconContext } from "react-icons"
 import { Link, useHistory } from "react-router-dom"
 import * as FaIcons from "react-icons/fa"
 import * as AiIcons from "react-icons/ai"
-import * as IoIcons from "react-icons/io"
 import Swal from "sweetalert2"
 import Cookies from "universal-cookie"
 

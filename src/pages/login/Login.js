@@ -48,18 +48,21 @@ const Login = () => {
     localStorage.setItem("userLevel", selectedUserLevel)
   }, [setAuthorizedValue, history, selectedUserLevel])
 
-  const handleErrorLogin = useCallback((error) => {
-    if (error) {
-      Swal.fire({
-        icon: "error",
-        text: error.message,
-        title: "Login gagal",
-        showConfirmButton: false,
-        timer: 2000,
-      })
-      history.push("/")
-    }
-  }, [])
+  const handleErrorLogin = useCallback(
+    (error) => {
+      if (error) {
+        Swal.fire({
+          icon: "error",
+          text: error.message,
+          title: "Login gagal",
+          showConfirmButton: false,
+          timer: 2000,
+        })
+        history.push("/")
+      }
+    },
+    [history]
+  )
 
   const { mutate: login } = useLogin(
     { username: username, password: password, role: selectedUserLevel },
@@ -112,11 +115,11 @@ const Login = () => {
 
   const handleRegisterAgen = useCallback(() => {
     history.push("/register-agen")
-  }, [])
+  }, [history])
 
   const handleRegisterCustomer = useCallback(() => {
     history.push("/register-customer")
-  }, [])
+  }, [history])
 
   const showModal = () => {
     Swal.fire({
@@ -211,9 +214,7 @@ const Login = () => {
             </Select>
           </Form.Item>
           <Form.Item>
-            <Row
-            justify="space-between"
-            >
+            <Row justify="space-between">
               <Button className="btn-register" onClick={showModal}>
                 Register
               </Button>

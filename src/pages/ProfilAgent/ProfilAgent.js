@@ -5,7 +5,7 @@ import Avatar from "../../assets/image/avatar-svgrepo-com.svg"
 import NavbarComponent from "../../components/navbarAgen/NavbarAgenComp"
 import "./ProfileAgent.sass"
 
-const { Title, Text } = Typography
+const { Text } = Typography
 
 const ProfileAgent = () => {
   return (

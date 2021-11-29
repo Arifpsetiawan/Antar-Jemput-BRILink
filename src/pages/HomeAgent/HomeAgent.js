@@ -1,5 +1,5 @@
 import React from "react"
-import {Typography, Spin, Space, Alert, Image} from "antd"
+import { Typography, Spin, Space, Alert, Image } from "antd"
 
 import NavbarComponent from "../../components/navbarAgen/NavbarAgenComp"
 import { useAuthorizedContext } from "../../AuthorizedContext"
@@ -7,16 +7,18 @@ import useGetTransaction from "../../Query/useGetTransaction"
 import "./HomeAgent.sass"
 import CardAgent from "../CardAgent/CardAgent"
 import Background from "../../assets/image/white-wave-background-vector.jpg"
-import NoData from "../../assets/image/no data.svg";
+import NoData from "../../assets/image/no data.svg"
 
 const { Title } = Typography
 
-
-
 function HomeAgent() {
-
   const { isLoggedIn, userLevel } = useAuthorizedContext()
-  const { data, isError, isLoading, refetch: refetchTransactions } = useGetTransaction()
+  const {
+    data,
+    isError,
+    isLoading,
+    refetch: refetchTransactions,
+  } = useGetTransaction()
 
   return (
     <div className="outer-home">
@@ -36,22 +38,19 @@ function HomeAgent() {
               <Spin tip="Loading..."></Spin>
             ) : isError ? (
               <Alert message="Gagal Memuat Data" type="error" />
-            ) :(
-                data?.data?.length == 0 ? (
-                    <>
-                        <Image src={NoData} />
-                        <h2>Belum Ada Permintaan Transaksi Hari ini</h2>
-                    </>
-
-                ) : (
-                    data.data?.map((transaction) => (
-                        <CardAgent
-                            key={transaction.id}
-                            transaction={transaction}
-                            refetchTransactions={refetchTransactions}
-                        />
-                    ))
-                )
+            ) : data?.data?.length == 0 ? (
+              <>
+                <Image src={NoData} />
+                <h2>Belum Ada Permintaan Transaksi Hari ini</h2>
+              </>
+            ) : (
+              data.data?.map((transaction) => (
+                <CardAgent
+                  key={transaction.id}
+                  transaction={transaction}
+                  refetchTransactions={refetchTransactions}
+                />
+              ))
             )}
           </Space>
         </div>

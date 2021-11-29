@@ -15,7 +15,6 @@ import { AuthorizedContextProvider } from "./AuthorizedContext"
 import RateComponent from "./pages/Rating/RateComponent"
 import HomeAgent from "./pages/HomeAgent/HomeAgent"
 
-
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -63,11 +63,11 @@ const RegisterAgen = () => {
 
   const {
     mutate: registerAgent,
-   isLoading:isLoadingAgent,
+    isLoading: isLoadingAgent,
     isError: isErrorAgent,
   } = useCreateAgen(
     agentState,
-    (result) => {
+    () => {
       history.push("/")
     },
     handleErrorRegister
@@ -122,7 +122,7 @@ const RegisterAgen = () => {
   return (
     <div className="outer-register">
       <div className="inner-register">
-      <div style={{marginTop:'30px'}}>
+        <div style={{ marginTop: "30px" }}>
           <Button
             type="link"
             style={{ marginLeft: "-40px", fontSize: "15px" }}

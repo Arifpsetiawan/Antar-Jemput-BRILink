@@ -1,24 +1,24 @@
-import React from "react";
+import React, { createContext, useContext, useState, useCallback } from "react"
 
 const AuthorizedDefaultValue = {
   isLoggedIn: false,
   userLevel: "",
   setAuthorizedValue: () => {},
-};
+}
 
-const AuthorizedContext = React.createContext(AuthorizedDefaultValue);
+const AuthorizedContext = createContext(AuthorizedDefaultValue)
 
 const AuthorizedContextProvider = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [userLevel, setUserLevel] = React.useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userLevel, setUserLevel] = useState("")
 
-  const setAuthorizedValue = React.useCallback(
+  const setAuthorizedValue = useCallback(
     (loginStatus, userLevelStatus) => {
-      setIsLoggedIn(loginStatus);
-      setUserLevel(userLevelStatus);
+      setIsLoggedIn(loginStatus)
+      setUserLevel(userLevelStatus)
     },
     [setIsLoggedIn, setUserLevel]
-  );
+  )
 
   return (
     <AuthorizedContext.Provider
@@ -26,14 +26,13 @@ const AuthorizedContextProvider = (props) => {
     >
       {props.children}
     </AuthorizedContext.Provider>
-  );
-};
+  )
+}
 
 const useAuthorizedContext = () => {
-  const { isLoggedIn, userLevel, setAuthorizedValue } =
-    React.useContext(AuthorizedContext);
+  const { isLoggedIn, userLevel, setAuthorizedValue } = useContext(AuthorizedContext)
 
-  return { isLoggedIn, userLevel, setAuthorizedValue };
-};
+  return { isLoggedIn, userLevel, setAuthorizedValue }
+}
 
-export { AuthorizedContextProvider, useAuthorizedContext };
+export { AuthorizedContextProvider, useAuthorizedContext }

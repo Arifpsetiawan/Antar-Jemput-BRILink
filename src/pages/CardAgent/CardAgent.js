@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react"
-import { Button, Card, Modal, Rate, Typography, Anchor } from "antd"
+import { Button, Card, Modal, Rate, Typography } from "antd"
 import moment from "moment"
 import useDeleteTransaction from "../../Mutations/useDeleteTransaction"
 import Swal from "sweetalert2"
@@ -16,7 +16,6 @@ import {
 import useUpdateTransaction from "../../Mutations/useUpdateTransaction"
 import RatingAgent from "../Rating/RatingAgent"
 
-const { Link } = Anchor
 const { Text } = Typography
 const CardAgent = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -110,7 +109,7 @@ const CardAgent = (props) => {
         rejectedTransaction()
       }
     })
-  }, [deleteTransaction])
+  }, [rejectedTransaction])
 
   const formatMoney = (money) => {
     return money.toLocaleString("id-ID")

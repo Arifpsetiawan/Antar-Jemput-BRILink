@@ -7,13 +7,16 @@ const useLogin = (loginData, onSuccess, onError) => {
   const { mutate, data, isLoading, isError } = useMutation(
     async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_BE_LOGIN}`, {
-          method: "POST", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginData), // body data type must match "Content-Type" header
-        })
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_BE_LOGIN}`,
+          {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData), // body data type must match "Content-Type" header
+          }
+        )
         if (response.ok) {
           const result = await response.json()
 

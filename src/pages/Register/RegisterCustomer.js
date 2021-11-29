@@ -34,7 +34,7 @@ const RegisterCustomer = () => {
 
   const { mutate: registerCustomer } = useCreateCustomer(
     customerState,
-    (result) => {
+    () => {
       history.push("/")
     },
     handleErrorRegisterCust

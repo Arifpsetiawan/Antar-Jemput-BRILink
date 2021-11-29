@@ -15,7 +15,6 @@ import Image from "../../assets/image/profile.svg"
 const { Text } = Typography
 
 const CardComponent = (props) => {
-  const history = useHistory()
   const [currentValue, setCurrentValue] = useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -76,7 +75,7 @@ const CardComponent = (props) => {
         cancelTransaction()
       }
     })
-  }, [deleteTransaction])
+  }, [cancelTransaction])
 
   const handleChange = (value) => {
     setCurrentValue(value)
