@@ -26,12 +26,7 @@ function NavbarAgenComp() {
       icon: <AiIcons.AiFillHome />,
       cName: "nav-text",
     },
-    {
-      title: "My Profile",
-      path: "/my-profile",
-      icon: <IoIcons.IoIosPaper />,
-      cName: "nav-text",
-    },
+
     {
       title: "Keluar",
       // path: "/signout",

@@ -12,7 +12,7 @@ function RatingAgent(props) {
     if(isNaN(numberOfRating)) numberOfRating = 0
 
     let totalReview = props.transaction.userAgent.agent.totalReviewTransactions
-
+    console.log(Math.floor(props.transaction.userAgent.agent.agentRating*100)/100)
     return (
         <div className="outer-rate">
             <div className="inner-rate">
@@ -30,16 +30,13 @@ function RatingAgent(props) {
                 </Text>{" "}
                 <br /> <br />
                 <span>
-          <Text
-              style={{ marginLeft: "100px", fontWeight: "bold", fontSize: "30px" }}
-          >
-
-             {Math.floor(numberOfRating).toFixed(1)}
+\          <Text style={{ marginLeft: "100px", fontWeight: "bold", fontSize: "30px" }}>
+             {Math.floor(props.transaction.userAgent.agent.agentRating*100)/100}
           </Text>
           <Text> / 5</Text> <br />
           <Rate
               allowHalf
-              value={Math.floor(numberOfRating).toFixed(1)}
+              value={Math.floor(props.transaction.userAgent.agent.agentRating*100)/100}
               style={{ marginRight: "15px", marginLeft: "70px" }}
           />
         </span> <br /> <br />

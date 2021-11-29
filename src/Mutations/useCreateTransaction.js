@@ -7,7 +7,6 @@ const useCreateTransaction = (transaction, onSuccess, onError) => {
   const { mutate, data, isLoading, isError } = useMutation(
     async () => {
       const response = await fetch(
-        //FIXME: nyesuain env 
         `${process.env.REACT_APP_BASE_URL}/transactions`,
         {
           method: "POST", // *GET, POST, PUT, DELETE, etc.

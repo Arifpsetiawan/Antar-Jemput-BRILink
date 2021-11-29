@@ -5,7 +5,7 @@ import Swal from "sweetalert2"
 
 import useCreateCustomer from "../../Mutations/useCreateCustomer"
 import { useAuthorizedContext } from "../../AuthorizedContext"
-import "./Register.css"
+import "./Register.sass"
 
 const { Title } = Typography
 
@@ -20,8 +20,8 @@ const RegisterCustomer = () => {
   const { setAuthorizedValue } = useAuthorizedContext()
 
   const handleErrorRegisterCust = useCallback((error) => {
-    //FIXME: error tidak terspesifikasi namanya
     if (error) {
+      console.log("ini error " + error)
       Swal.fire({
         icon: "error",
         text: error.message,
@@ -29,14 +29,12 @@ const RegisterCustomer = () => {
         showConfirmButton: false,
         timer: 2000,
       })
-      history.push("/")
     }
   }, [])
 
   const { mutate: registerCustomer } = useCreateCustomer(
     customerState,
     (result) => {
-      console.log("success mutation >> ", result)
       history.push("/")
     },
     handleErrorRegisterCust
@@ -50,7 +48,6 @@ const RegisterCustomer = () => {
 
   const changePassword = (e) => {
     const value = e.target.value
-    console.log("value >>", value)
     setPassword(value)
     if (!value) {
       setErrorPassword("Password tidak boleh kosong")
@@ -67,7 +64,6 @@ const RegisterCustomer = () => {
 
   const changeNoHandphone = (e) => {
     const value = e.target.value
-    console.log("value >>", value)
     setPhoneNumber(value)
     if (!value) {
       setErrorNumber("Nomor Handphone tidak boleh kosong")
@@ -85,8 +81,6 @@ const RegisterCustomer = () => {
   const changeConfirmPassword = (e) => {
     const value = e.target.value
     setConfirmPassword(value)
-    console.log("value >>", value)
-    console.log("password >>", password)
     if (!value) {
       setErrorConfirmPassword("Konfirmasi Password tidak boleh kosong")
     } else if (password != value) {
@@ -139,7 +133,6 @@ const RegisterCustomer = () => {
               placeholder="Masukkan Nama"
               name="nama"
               onChange={(event) => {
-                console.log("value >> ", customerState)
                 setCustomerState({
                   ...customerState,
                   name: event.target.value,
@@ -179,7 +172,6 @@ const RegisterCustomer = () => {
               placeholder="Username"
               name="username"
               onChange={(event) => {
-                console.log("value >> ", customerState)
                 setCustomerState({
                   ...customerState,
                   username: event.target.value,
@@ -238,10 +230,7 @@ const RegisterCustomer = () => {
                 justifyContent: "center",
               }}
             >
-              <Button
-                className="btn-registerCustomer"
-                onClick={registerCustomer}
-              >
+              <Button className="btn-registerCustomer" onClick={registerCustomer}>
                 Register Customer
               </Button>
             </Col>

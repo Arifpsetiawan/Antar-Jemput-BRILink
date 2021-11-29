@@ -3,7 +3,7 @@ import { Button, Card, Modal, Rate, Typography, Anchor } from "antd"
 import moment from "moment"
 import useDeleteTransaction from "../../Mutations/useDeleteTransaction"
 import Swal from "sweetalert2"
-import "./CardAgent.css"
+import "./CardAgent.sass"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faCheck,
@@ -85,9 +85,7 @@ const CardAgent = (props) => {
     props.transaction.id,
     { statusTransaction: 2 },
     props.refetchTransactions,
-    () => {
-      console.log("Error ", Error)
-    },
+    () => {},
     () => {
       Swal.fire({
         icon: "success",
@@ -157,12 +155,14 @@ const CardAgent = (props) => {
         <li>
           <b>Nomer Customer</b>
           <Button
-          type='link'
-          style={
-            {padding:"0px"}
-          }
-          href={"https://wa.me/62"+ props.transaction.userCustomer.customer.NoHandphone}>
-          {props.transaction.userCustomer.customer.NoHandphone}
+            type="link"
+            style={{ padding: "0px" }}
+            href={
+              "https://wa.me/62" +
+              props.transaction.userCustomer.customer.NoHandphone
+            }
+          >
+            {props.transaction.userCustomer.customer.NoHandphone}
           </Button>
         </li>
         <li>
@@ -176,12 +176,12 @@ const CardAgent = (props) => {
           {props.transaction.statusTransaction === 0
             ? "Menunggu konfirmasi agen"
             : props.transaction.statusTransaction === 1
-              ? "Agen dalam perjalanan"
-              : props.transaction.statusTransaction === 2
-                ? "Ditolak atau Dibatalkan"
-                : props.transaction.statusTransaction === 3
-                  ? "Selesai"
-                  : "Error"}
+            ? "Agen dalam perjalanan"
+            : props.transaction.statusTransaction === 2
+            ? "Ditolak atau Dibatalkan"
+            : props.transaction.statusTransaction === 3
+            ? "Selesai"
+            : "Error"}
         </li>
       </ul>
       <div className="float-right">

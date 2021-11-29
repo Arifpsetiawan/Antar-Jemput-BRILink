@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import { Form, Input, Button, Select, Col } from "antd"
+import { Form, Input, Button, Select, Row } from "antd"
 import {
   UserOutlined,
   LockOutlined,
@@ -9,7 +9,7 @@ import {
 import { useHistory } from "react-router-dom"
 import Swal from "sweetalert2"
 
-import "./login.css"
+import "./login.sass"
 import BRI from "../../assets/image/BRI2.png"
 import { useAuthorizedContext } from "../../AuthorizedContext"
 import useLogin from "../../Mutations/useLogin"
@@ -78,10 +78,6 @@ const Login = () => {
   const handleSelectedUserLevel = useCallback((value) => {
     setSelectedUserLevel(parseInt(`${value}`))
   }, [])
-
-  console.log("ini login ", login)
-
-
   const UserType = [
     {
       key: 2,
@@ -114,9 +110,6 @@ const Login = () => {
     [data]
   )
 
-  console.log("Ini data", data)
-  console.log("INI ROLE", selectedUserLevel)
-
   const handleRegisterAgen = useCallback(() => {
     history.push("/register-agen")
   }, [])
@@ -127,11 +120,11 @@ const Login = () => {
 
   const showModal = () => {
     Swal.fire({
-      icon:"question",
-      text: 'Register Sebagai',
+      icon: "question",
+      text: "Register Sebagai",
       showDenyButton: true,
       showCancelButton: false,
-      confirmButtonText: 'Customer',
+      confirmButtonText: "Customer",
       denyButtonText: `Agen`,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -218,23 +211,16 @@ const Login = () => {
             </Select>
           </Form.Item>
           <Form.Item>
-            <Col
-              span={12}
-              offset={2}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+            <Row
+            justify="space-between"
             >
-              <Button className="btn-login" onClick={login}>
-                Login
-              </Button>
-
               <Button className="btn-register" onClick={showModal}>
                 Register
               </Button>
-            </Col>
+              <Button className="btn-login" onClick={login}>
+                Login
+              </Button>
+            </Row>
           </Form.Item>
         </Form>
       </div>

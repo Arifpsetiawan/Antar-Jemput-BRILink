@@ -23,7 +23,6 @@ const RestrictedWrapper = (props) => {
       history.push("/")
     }
   }, [isLoggedIn, history])
-  console.log("isLoggedIn", isLoggedIn)
 
   React.useEffect(() => {
     if (accessToken) {

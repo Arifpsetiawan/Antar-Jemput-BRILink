@@ -16,9 +16,7 @@ const { Title } = Typography
 function HomeAgent() {
 
   const { isLoggedIn, userLevel } = useAuthorizedContext()
-  console.log("value >> ", isLoggedIn, userLevel)
   const { data, isError, isLoading, refetch: refetchTransactions } = useGetTransaction()
-  console.log("data >> ", isLoading, data)
 
   return (
     <div className="outer-home">

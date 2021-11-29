@@ -1,6 +1,6 @@
 import React from "react"
 import {Typography, Spin, Space, Alert, PageHeader, Button, Descriptions, Image} from "antd"
-import "./Home.css"
+import "./Home.sass"
 import NavbarComponent from "../../components/navbar/NavbarComponent"
 import { useAuthorizedContext } from "../../AuthorizedContext"
 import useGetTransaction from "../../Query/useGetTransaction"
@@ -13,7 +13,6 @@ const { Title } = Typography
 
 function HomeCustomer() {
   const { isLoggedIn, userLevel } = useAuthorizedContext()
-  console.log("value >> ", isLoggedIn, userLevel)
  
   const {
     data,
@@ -21,8 +20,6 @@ function HomeCustomer() {
     isLoading,
     refetch: refetchTransactions,
   } = useGetTransaction()
-
-  console.log("data ", data)
 
   return (
     <div className="outer-home">

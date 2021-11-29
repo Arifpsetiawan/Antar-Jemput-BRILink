@@ -7,7 +7,7 @@ import useGetProvinces from "../../Query/useGetProvinces"
 import useGetCity from "../../Query/useGetCity"
 import useGetDistrictID from "../../Query/useGetDistrictID"
 import useCreateAgen from "../../Mutations/useCreateAgen"
-import "./Register.css"
+import "./Register.sass"
 import { useAuthorizedContext } from "../../AuthorizedContext"
 
 const { Option } = Select
@@ -44,17 +44,6 @@ const RegisterAgen = () => {
     isError: isErrorDistrictID,
   } = useGetDistrictID(selectedKabupaten)
 
-  const handleSuccessRegister = useCallback(() => {
-    setAuthorizedValue(true)
-    Swal.fire({
-      icon: "success",
-      title: "Register Success",
-      showConfirmButton: false,
-      timer: 2000,
-    })
-    history.push("/home")
-  }, [setAuthorizedValue, history])
-
   const handleBackLogin = useCallback(() => {
     setAuthorizedValue(false)
     history.push("/")
@@ -64,8 +53,8 @@ const RegisterAgen = () => {
     if (error) {
       Swal.fire({
         icon: "error",
-        text: error,
-        title: "Login gagal",
+        text: error.message,
+        title: "Register gagal",
         showConfirmButton: false,
         timer: 2000,
       })
@@ -74,15 +63,13 @@ const RegisterAgen = () => {
 
   const {
     mutate: registerAgent,
-    isLoadingAgent,
-    isErrorAgent,
+   isLoading:isLoadingAgent,
+    isError: isErrorAgent,
   } = useCreateAgen(
     agentState,
     (result) => {
-      console.log("success mutation >> ", result)
       history.push("/")
     },
-    handleSuccessRegister,
     handleErrorRegister
   )
   const handleSelectedProvinsi = (value) => {
@@ -97,8 +84,6 @@ const RegisterAgen = () => {
   }
   const handleFormDistrictID = (value) => {
     setAgentState({ ...agentState, districtId: value })
-    console.log(agentState)
-    console.log(value)
   }
 
   const [password, setPassword] = useState("")
@@ -108,7 +93,6 @@ const RegisterAgen = () => {
 
   const changePassword = (e) => {
     const value = e.target.value
-    console.log("value >>", value)
     setPassword(value)
     if (!value) {
       setErrorPassword("Password tidak boleh kosong")
@@ -126,8 +110,6 @@ const RegisterAgen = () => {
   const changeConfirmPassword = (e) => {
     const value = e.target.value
     setConfirmPassword(value)
-    console.log("value >>", value)
-    console.log("password >>", password)
     if (!value) {
       setErrorConfirmPassword("Konfirmasi Password tidak boleh kosong")
     } else if (password != value) {
@@ -138,9 +120,17 @@ const RegisterAgen = () => {
   }
 
   return (
-    //FIXME: ERROR HANDLING WITH SWAL IS NOT BUILD
     <div className="outer-register">
       <div className="inner-register">
+      <div style={{marginTop:'30px'}}>
+          <Button
+            type="link"
+            style={{ marginLeft: "-40px", fontSize: "15px" }}
+            onClick={handleBackLogin}
+          >
+            Kembali
+          </Button>
+        </div>
         <div>
           <Button
             type="link"
@@ -178,7 +168,6 @@ const RegisterAgen = () => {
               placeholder="Masukkan Nama"
               name="Nama"
               onChange={(event) => {
-                console.log("value >> ", agentState)
                 setAgentState({
                   ...agentState,
                   agentName: event.target.value,
@@ -246,7 +235,7 @@ const RegisterAgen = () => {
           <Form.Item
             style={{ marginBottom: " 8px", padding: "0px" }}
             name="alamat-Kantor"
-            label="Alamat Kantor"
+            label="Detail Alamat"
             rules={[
               {
                 required: true,
@@ -255,10 +244,9 @@ const RegisterAgen = () => {
             ]}
           >
             <Input
-              placeholder="Masukkan Detail Alamat Kantor Anda"
+              placeholder="Masukkan Detail Alamat Anda"
               name="alamat-Kantor"
               onChange={(event) => {
-                console.log("value >> ", agentState)
                 setAgentState({
                   ...agentState,
                   address: event.target.value,
@@ -283,7 +271,6 @@ const RegisterAgen = () => {
               placeholder="Masukkan Nomor Handphone"
               name="Nomor-Handphone"
               onChange={(event) => {
-                console.log("value >> ", agentState)
                 setAgentState({
                   ...agentState,
                   noHandphone: event.target.value,
@@ -306,7 +293,6 @@ const RegisterAgen = () => {
               placeholder="Masukkan Username"
               name="Username"
               onChange={(event) => {
-                console.log("value >> ", agentState)
                 setAgentState({
                   ...agentState,
                   username: event.target.value,

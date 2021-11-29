@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 import { faBan, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Swal from "sweetalert2"
-import "../CardAgent/CardAgent.css"
+import "../CardAgent/CardAgent.sass"
 import useUpdateTransaction from "../../Mutations/useUpdateTransaction"
 // import RateComponent from "../Rating/RateComponent"
 import useCreateRate from "../../Mutations/useCreateRate"
@@ -86,7 +86,6 @@ const CardComponent = (props) => {
     props.transaction.id,
     { rating: currentValue },
     props.refetchTransactions,
-    console.log("error ", Error),
     { handleOk }
   )
 
